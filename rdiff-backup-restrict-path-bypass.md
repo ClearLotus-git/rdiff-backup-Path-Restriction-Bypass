@@ -2,7 +2,7 @@
 
 | Field | Details |
 |---|---|
-| Researcher | [ClearLotus] |
+| Researcher | ClearLotus |
 | Date | September 2, 2026 |
 | Software | rdiff-backup 2.2.6 |
 | Operating System | XXX |
