@@ -22,7 +22,7 @@ During authorized security testing, an `rdiff-backup` 2.2.6 server was configure
 Despite those restrictions, the tested configuration allowed a remote backup operation to retrieve the `/root` directory. The recovered backup contained sensitive root-owned files, including an SSH private key:
 
 ```text
-/root/.ssh/id_ed25519
+/root/.ssh/id_edXXXXX
 ```
 
 In the authorized test environment, the recovered private key remained valid and was used to authenticate as `root` to the associated system.
@@ -58,7 +58,7 @@ Improperly restricted rdiff-backup configuration
 |---|---|
 | Software | `rdiff-backup` |
 | Tested version | `2.2.6` |
-| Operating system | Ubuntu 24.04.5 LTS |
+| Operating system | XXX |
 | Deployment mode | Remote server mode |
 | Tested restriction | `--restrict-mode read-only` |
 | Intended allowed path | `/opt/backup` |
@@ -146,13 +146,13 @@ ls -la /tmp/root_backup/.ssh
 Among the recovered files was:
 
 ```text
-/tmp/root_backup/.ssh/id_ed25519
+/tmp/root_backup/.ssh/id_edXXXXX
 ```
 
 This corresponds to the original protected filesystem location:
 
 ```text
-/root/.ssh/id_ed25519
+/root/.ssh/id_edXXXXX
 ```
 
 The private key material is intentionally excluded from this report.
@@ -164,7 +164,7 @@ The private key material is intentionally excluded from this report.
 To evaluate the practical impact of the exposed credential, the recovered private key was tested in the authorized environment against a redacted target:
 
 ```bash
-ssh -i /tmp/root_backup/.ssh/id_ed25519 root@<REDACTED-TARGET>
+ssh -i /tmp/root_backup/.ssh/id_edXXXXX root@<REDACTED-TARGET>
 ```
 
 Authentication succeeded and returned a privileged shell:
@@ -219,7 +219,7 @@ The observed issue reflects insufficient separation between the security boundar
 For example, an ordinary operating-system user may be unable to read:
 
 ```text
-/root/.ssh/id_ed25519
+/root/.ssh/id_edXXXX
 ```
 
 However, if the same file can be retrieved through a backup service that runs with elevated privileges or is improperly restricted, the backup interface becomes an alternate access path around normal filesystem permissions.
@@ -320,7 +320,7 @@ This finding documents behavior reproduced in the following tested environment:
 
 ```text
 rdiff-backup: 2.2.6
-Operating system: Ubuntu 24.04.5 LTS
+Operating system: Ubuntu XXX
 Mode: Remote server mode
 ```
 
