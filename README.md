@@ -1,4 +1,4 @@
-rdiff-backup Path Restriction Bypass: Unauthorized Read Access to /root
+# rdiff-backup Path Restriction Bypass: Unauthorized Read Access to /root
 
 Authorized security research concerning protected filesystem access through a tested `rdiff-backup` remote-server configuration.
 
